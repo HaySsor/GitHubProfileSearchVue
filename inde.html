@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <section id="app">
+
+        <h1>GitHub Profiles</h1>
+        <div class="search">
+            <input type="text" v-model="inputValue" placeholder="Search Github user" @keydown.enter="search">
+        </div>
+
+
+        <github-user-card v-if="entredValue" :username="entredValue"></github-user-card>
+    </section>
+
+
+    <script type="text/x-template" id="github-user-card-template">
+        <div class='profile-box'>
+            <img :src='profileData.avatar_url' alt="">
+            <div class=info>
+                <a class='login' :href='profileData.html_url'>{{profileData.login}}</a>
+                <p class='data'>Join in {{profileData.created_at?.slice(0,4)}}</p>
+                <p>{{profileData.bio}}</p>
+            </div>
+            <div class=folowers>
+                <p>👤 {{profileData.followers}} </p>
+            </div>
+        </div>
+    </script>
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
